@@ -1,8 +1,9 @@
 import express from 'express';
 import  sequelize  from './config/database';
-// import { Users, Posts, Category, Comment, PostCategory } from './models';
 import userRoutes from './routes/userRoutes';
 import postRoutes from './routes/postRoutes';
+// import jwt from 'jsonwebtoken';
+
 
 const app = express();
 
