@@ -13,7 +13,7 @@ app.use(express_1.default.json());
 app.use('/api/users', userRoutes_1.default);
 app.use('/api/posts', postRoutes_1.default);
 const PORT = process.env.PORT || 3000;
-database_1.default.sync({ force: true }).then(() => {
+database_1.default.sync({ alter: true }).then(() => {
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);
     });

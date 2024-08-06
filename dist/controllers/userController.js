@@ -17,10 +17,10 @@ const users_1 = __importDefault(require("../models/users"));
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield users_1.default.create(req.body);
-        res.status(201).json(user);
+        res.status(201).json({ user, message: 'User created successfully', });
     }
     catch (error) {
-        res.status(500).json({ error: 'User not found' });
+        res.status(500).json({ error: 'Error creating the user' });
     }
 });
 exports.createUser = createUser;
@@ -30,7 +30,7 @@ const getAllUsers = (_req, res) => __awaiter(void 0, void 0, void 0, function* (
         res.status(200).json(users);
     }
     catch (error) {
-        res.status(500).json({ error: 'User not found' });
+        res.status(500).json({ error: 'Error fitching all users' });
     }
 });
 exports.getAllUsers = getAllUsers;
@@ -38,7 +38,7 @@ const getUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     try {
         const user = yield users_1.default.findByPk(req.params.userId);
         if (user) {
-            res.status(200).json(user);
+            res.status(200).json({ user, message: 'User retrieved successfully', });
         }
         else {
             res.status(404).json({ error: 'User not found' });

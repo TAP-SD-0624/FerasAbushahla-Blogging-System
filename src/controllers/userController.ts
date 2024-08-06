@@ -5,9 +5,9 @@ import  Users  from '../models/users';
 export const createUser = async (req: Request, res: Response): Promise<void> => {
     try {
         const user = await Users.create(req.body);
-        res.status(201).json(user);
+        res.status(201).json({user, message: 'User created successfully',});
     } catch (error) {
-        res.status(500).json({ error: 'User not found' });
+        res.status(500).json({ error: 'Error creating the user' });
     }
 };
 
@@ -16,7 +16,7 @@ export const getAllUsers = async (_req: Request, res: Response): Promise<void> =
         const users = await Users.findAll();
         res.status(200).json(users);
     } catch (error) {
-        res.status(500).json({ error: 'User not found' });
+        res.status(500).json({ error: 'Error fitching all users' });
     }
 };
 
@@ -24,7 +24,7 @@ export const getUserById = async (req: Request, res: Response): Promise<void> =>
     try {
         const user = await Users.findByPk(req.params.userId);
         if (user) {
-            res.status(200).json(user);
+            res.status(200).json({user, message: 'User retrieved successfully',});
         } else {
             res.status(404).json({ error: 'User not found' });
         }
